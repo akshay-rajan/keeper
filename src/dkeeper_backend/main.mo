@@ -10,7 +10,7 @@ actor dkeeper {
     content: Text;
   };
 
-  // An array of Note objects
+  // A list of Note objects (List is more efficient that array, on constant altering)
   var notes: List.List<Note> = List.nil<Note>();
 
   // Add new note to the backend
@@ -26,6 +26,13 @@ actor dkeeper {
     
     Debug.print(debug_show(notes));
 
-  }
+  };
+
+  // Fetch notes on startup
+  public query func fetchNote(): async [Note] {
+
+    return List.toArray(notes);
+
+  };
 
 };
